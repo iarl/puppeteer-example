@@ -1,0 +1,16 @@
+{
+  "name": "puppeteer-example",
+  "version": "1.0.0",
+  "description": "puppeteer page object example",
+  "scripts": {
+    "test": "mocha --opts mocha.opts ./tests/login.js"
+  },
+  "author": "iarl",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "faker": "^4.1.0",
+    "jest": "^25.3.0",
+    "mocha": "^7.1.1",
+    "puppeteer": "^2.1.1"
+  }
+}

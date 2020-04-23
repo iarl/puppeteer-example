@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    puppeteer-tests:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: puppeteer-tests
+        environment: 
+            HEADLESS: "${HEADLESS}"
+            URL: "${URL}"
+        container_name: puppeteer-tests
+        ports: 
+            - 3006:3006
+        network_mode: "host"
+        privileged: true
