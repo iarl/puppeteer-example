@@ -3,11 +3,11 @@
 * clone *[this repo](https://github.com/iarl/puppeteer-example.git)*
 * `make build`
 * `make start`
-To stop docker container:
+##### To stop docker container:
 * `make stop`
-To clean all:
+##### To clean all:
 * `make purge`
-To rebuild and restart:
+##### To rebuild and restart:
 * `make restart`
 
 ## Start tests locally
@@ -15,8 +15,8 @@ To rebuild and restart:
 * clone *[this repo](https://github.com/iarl/puppeteer-example.git)*
 * `npm install`
 * `npm test`
-By default tests will launch in headless mode.
-To run in headfull mode:
+#### By default tests will launch in headless mode.
+#### To run in headfull mode:
 * `HEADLESS=false npm test`
 
 # TO DO
