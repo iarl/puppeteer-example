@@ -5,7 +5,7 @@ class LoginPage{
         this.email_field = '#email'
         this.password_field = '#passwd'
         this.submit_button = '#SubmitLogin'
-        this.error_message = '.alert.alert-danger>ol>li'
+        this.error_message = 'div.alert.alert-danger>ol>li'
     }
 
     async enterLogin(login){
@@ -19,6 +19,7 @@ class LoginPage{
     }
 
     async clickSubmitButton(){
+        await this.page.waitForSelector(this.submit_button)
         await this.page.click(this.submit_button);
     }
 
