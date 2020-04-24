@@ -17,9 +17,9 @@ class HomePage{
     }
 
     async clearCookies(){
+        let cookie = await this.page.cookies(config.baseURL)
         await this.page.deleteCookie({
-            name: 'PrestaShop-a30a9934ef476d11b6cc3c983616e364',
-            domain: 'automationpractice.com'
+            name: 'PrestaShop-a30a9934ef476d11b6cc3c983616e364'
         })
     }
 

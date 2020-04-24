@@ -22,5 +22,5 @@
 # TO DO
 - Improve page object model
 - Fix headfull launch in Docker
-- Fix incorrect password test
 - Check env. parameters for docker
+- fix clearCookies step

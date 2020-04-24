@@ -5,7 +5,7 @@ class LoginPage{
         this.email_field = '#email'
         this.password_field = '#passwd'
         this.submit_button = '#SubmitLogin'
-        this.error_message = 'div.alert.alert-danger>ol>li'
+        this.error_message = 'div.alert.alert-danger > ol > li'
     }
 
     async enterLogin(login){
@@ -29,7 +29,7 @@ class LoginPage{
     }
 
     async errorMessage(){
-        await this.page.waitForSelector(this.header_user_info);
+        await this.page.waitForSelector(this.error_message);
         const text = await this.page.$eval(this.error_message, el => el.textContent);
         return text
     }

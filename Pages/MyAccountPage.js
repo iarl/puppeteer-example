@@ -2,7 +2,7 @@ class MyAccountPage{
 
     constructor(page){
         this.page = page;
-        this.header_user_info = '.header_user_info>a>span';
+        this.header_user_info = '.account>span'
         this.logout_button = '.logout';
     }
 

@@ -10,7 +10,7 @@ describe('Login to http://automationpractice.com/index.php', function(){
     let browser;
     let page;
 
-    this.beforeAll(async function(){
+    beforeEach(async function(){
         browser = await puppeteer.launch({
             headless: config.headless,
             args:[ '--start-maximized']
@@ -20,7 +20,7 @@ describe('Login to http://automationpractice.com/index.php', function(){
         //await page.goto(config.baseURL);
     });
 
-    this.afterAll(async () => {
+    afterEach(async () => {
         await browser.close();
     });
 
@@ -37,17 +37,54 @@ describe('Login to http://automationpractice.com/index.php', function(){
         expect(headerText).to.be.equal('Auto Test')
     })
 
-    it('The "Password is required" message should be displayed if password field is blank', async function(){
+    it('The "Password is required." message should be displayed if password field is blank', async function(){
         const homePage = new HomePage(page);
         const loginPage = new LoginPage(page);
         await homePage.open();
         await homePage.clearCookies();
         await homePage.clickSignInButton();
         await loginPage.enterLogin('automation@acemail.info');
-        await loginPage.enterPassword('');
         await loginPage.clickSubmitButton();
         const errorMessageText = await loginPage.errorMessage()
-        expect(errorMessageText).to.be.equal('Password is required')
+        expect(errorMessageText).to.be.equal('Password is required.')
+    })
+
+    it('The "An email address required." message should be displayed if email field is blank', async function(){
+        const homePage = new HomePage(page);
+        const loginPage = new LoginPage(page);
+        await homePage.open();
+        await homePage.clearCookies();
+        await homePage.clickSignInButton();
+        await loginPage.enterLogin('');
+        await loginPage.clickSubmitButton();
+        const errorMessageText = await loginPage.errorMessage()
+        expect(errorMessageText).to.be.equal('An email address required.')
+    })
+
+    it('The "Authentication failed." message should be displayed after sending incorrerct password', async function(){
+        const homePage = new HomePage(page);
+        const loginPage = new LoginPage(page);
+        await homePage.open();
+        await homePage.clearCookies();
+        await homePage.clickSignInButton();
+        await loginPage.enterLogin('automation@acemail.info');
+        await loginPage.enterPassword('asdfa')
+        await loginPage.clickSubmitButton();
+        const errorMessageText = await loginPage.errorMessage()
+        expect(errorMessageText).to.be.equal('Authentication failed.')
+    })
+
+    it('The "Invalid password." message should be displayed after sending incorrerct password less than 5 characters', async function(){
+        const homePage = new HomePage(page);
+        const loginPage = new LoginPage(page);
+        await homePage.open();
+        await homePage.clearCookies();
+        await homePage.clickSignInButton();
+        await loginPage.enterLogin('automation@acemail.info');
+        await loginPage.enterPassword('asds')
+        await loginPage.clickSubmitButton();
+        const errorMessageText = await loginPage.errorMessage()
+        expect(errorMessageText).to.be.equal('Invalid password.')
     })
 
 });
